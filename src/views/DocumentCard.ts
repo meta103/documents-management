@@ -35,7 +35,6 @@ export class DocumentCard extends HTMLElement {
 
   private getTemplate(): string {
     if (!this.document) return '';
-    console.log(this.document);
 
     return `
       <div class="document-card">
