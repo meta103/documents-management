@@ -1,9 +1,9 @@
-import type { Document } from "../models/Documents";
+import type { DocumentRaw } from "../models/Documents";
 
 const API_URL = "http://localhost:8080";
 
 export class ApiService {
-  async getDocuments(): Promise<Document[]> {
+  async getDocuments(): Promise<DocumentRaw[]> {
     try {
       const response = await fetch(`${API_URL}/documents`);
       return response.json();

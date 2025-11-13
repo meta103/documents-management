@@ -5,6 +5,7 @@ import type { ApiService } from "../services/ApiService";
 import type { WebSocketNotificationService, WebSocketService } from "../services/WebSocketService";
 import type { Document } from "../models/Documents";
 import type { DocumentsGridView } from "../views/DocumentsGridView";
+import { DocumentMapper } from "../models/DocumentMapper";
 
 export class DocumentController {
   private documentsStore: DocumentsStore;
@@ -26,15 +27,17 @@ export class DocumentController {
 
   async initialize(): Promise<void> {
     try {
-      const documents = await this.apiService.getDocuments();
-      // Carga inicial de documentos desde API
-      this.documentsStore.setDocuments(documents);
+      const rawDocuments = await this.apiService.getDocuments();
 
-
+      //Mapeo para formatear
+      const documents: Document[] = DocumentMapper.toDomainArray(rawDocuments);
       // Suscripción a cambios en el store para actualizar la vista
       this.documentsStore.subscribe((documents: Document[]) => {
         this.gridView.render(documents);
       });
+
+      // Carga inicial de documentos desde API
+      this.documentsStore.setDocuments(documents);
 
       // Conexión al WebSocket para notificaciones en tiempo real
       try {
