@@ -37,7 +37,7 @@ export class DocumentController {
       });
 
       // Carga inicial de documentos desde API
-      this.documentsStore.setDocuments(documents);
+      this.documentsStore.setDocuments(documents.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
 
       // Conexión al WebSocket para notificaciones en tiempo real
       try {
