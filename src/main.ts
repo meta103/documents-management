@@ -1,4 +1,5 @@
 import { App } from "./app";
+import './styles/main.css';
 
 function startApp(): void {
   const rootElement = document.getElementById('app');
