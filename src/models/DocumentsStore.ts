@@ -30,7 +30,7 @@ export class DocumentsStore {
   }
 
   /* Reemplaza toda la lista de documents */
-  setDocument(documents: Document[]): void {
+  setDocuments(documents: Document[]): void {
     this.documents = [...documents];
     this.notify();
   }
