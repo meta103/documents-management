@@ -4,23 +4,24 @@ import type { DocumentsStore } from "../models/DocumentsStore";
 import type { ApiService } from "../services/ApiService";
 import type { WebSocketNotificationService, WebSocketService } from "../services/WebSocketService";
 import type { Document } from "../models/Documents";
+import type { DocumentsGridView } from "../views/DocumentsGridView";
 
 export class DocumentController {
   private documentsStore: DocumentsStore;
   private apiService: ApiService;
   private webSocketService: WebSocketService;
-  /* private gridView: DocumentGridView; */
+  private gridView: DocumentsGridView;
 
   constructor(
     documentsStore: DocumentsStore,
     apiService: ApiService,
     webSocketService: WebSocketService,
-    /* gridView: DocumentGridView */
+    gridView: DocumentsGridView
   ) {
     this.documentsStore = documentsStore;
     this.apiService = apiService;
     this.webSocketService = webSocketService;
-    /* this.gridView = gridView; */
+    this.gridView = gridView;
   }
 
   async initialize(): Promise<void> {
@@ -32,8 +33,7 @@ export class DocumentController {
 
       // Suscripción a cambios en el store para actualizar la vista
       this.documentsStore.subscribe((documents: Document[]) => {
-        //TODO: descomentar cuando haya vista
-        /* this.gridView.render(documents); */
+        this.gridView.render(documents);
       });
 
       // Conexión al WebSocket para notificaciones en tiempo real
