@@ -9,7 +9,7 @@ function startApp(): void {
   }
 
   try {
-    //Inscancia la app con el elemeneto raiz
+    //Instancia la app con el elemeneto raiz
     const app = new App(rootElement);
     //Inicia la App
     app.initialize();

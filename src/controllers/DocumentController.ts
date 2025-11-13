@@ -62,6 +62,6 @@ export class DocumentController {
   private showNotification(message: string): void {
     console.log(message);
 
-    alert(message);
+    /* alert(message); */
   }
 }
