@@ -35,21 +35,23 @@ export class DocumentCard extends HTMLElement {
 
   private getTemplate(): string {
     if (!this.document) return '';
+    console.log(this.document);
 
     return `
       <div class="document-card">
         <div class="card-header">
           <h3 class="document-title">${this.document.title}</h3>
           <p class="document-version">Versión: ${this.document.version}</p>
-          <p class="document-date">Creado el: ${new Date(this.document.createdAt).toLocaleDateString()}</p>
+          <p class="document-date"> <strong>Creado el: ${new Date(this.document.createdAt).toLocaleDateString()}</strong></p>
         </div>
         <div class="card-content">
-          <p class="document-date"> <strong>Created: ${this.document.createdAt}</strong></p>
           <div class="document-contributors">
-            <ul class="contributors-list">${this.document.contributors.map(contributor => `<li>${contributor}</li>`)}</ul>
+            <strong>Contribuidores:</strong>
+            <ul class="contributors-list">${this.document.contributors.map(contributor => `<li>${contributor}</li>`).join('')}</ul>
           </div>  
           <div class="document-attachments">
-            <ul class="attachments-list">${this.document.attachments.map(attachment => `<li>${attachment}</li>`)}</ul>
+            <strong>Adjuntos:</strong>
+            <ul class="attachments-list">${this.document.attachments.map(attachment => `<li>${attachment}</li>`).join('')}</ul>
           </div> 
         </div>
       </div>
