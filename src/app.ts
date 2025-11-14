@@ -3,6 +3,7 @@ import { DocumentsStore } from "./models/DocumentsStore";
 import { ApiService } from "./services/ApiService";
 import { WebSocketService } from "./services/WebSocketService";
 import { DocumentsGridView } from "./views/DocumentsGridView";
+import { NotificationView } from "./views/NotificationView";
 
 export class App {
   private rootElement: HTMLElement;
@@ -10,6 +11,7 @@ export class App {
   private webSocketService: WebSocketService;
   private documentsStore: DocumentsStore;
   private documentsController: DocumentController;
+  private notificationView: NotificationView;
 
   constructor(rootElement: HTMLElement) {
     this.rootElement = rootElement;
@@ -20,13 +22,15 @@ export class App {
     this.documentsStore = new DocumentsStore();
     //Iniciar vista
     const gridView = new DocumentsGridView(this.rootElement);
+    this.notificationView = new NotificationView();
 
     //Iniciar controlador
     this.documentsController = new DocumentController(
       this.documentsStore,
       this.apiService,
       this.webSocketService,
-      gridView
+      gridView,
+      this.notificationView,
     );
   }
 

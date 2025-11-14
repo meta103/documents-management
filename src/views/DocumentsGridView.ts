@@ -1,5 +1,5 @@
+import { DocumentCard } from '../components/DocumentCard';
 import type { Document } from '../models/Documents';
-import { DocumentCard } from './DocumentCard';
 
 export class DocumentsGridView {
   private root: HTMLElement;
