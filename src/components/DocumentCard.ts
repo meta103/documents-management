@@ -43,16 +43,14 @@ export class DocumentCard extends HTMLElement {
           <p class="document-version">Versión: ${this.document.version}</p>
           <p class="document-date"> <strong>Creado el: ${new Date(this.document.createdAt).toLocaleDateString()}</strong></p>
         </div>
-        <div class="card-content">
-          <div class="document-contributors">
-            <strong>Contribuidores:</strong>
-            <ul class="contributors-list">${this.document.contributors.map(contributor => `<li>${contributor}</li>`).join('')}</ul>
-          </div>  
-          <div class="document-attachments">
-            <strong>Adjuntos:</strong>
-            <ul class="attachments-list">${this.document.attachments.map(attachment => `<li>${attachment}</li>`).join('')}</ul>
-          </div> 
-        </div>
+        <div class="document-contributors">
+          <strong>Contribuidores:</strong>
+          <ul class="contributors-list">${this.document.contributors.map(contributor => `<li>${contributor}</li>`).join('')}</ul>
+        </div>  
+        <div class="document-attachments">
+          <strong>Adjuntos:</strong>
+          <ul class="attachments-list">${this.document.attachments.map(attachment => `<li>${attachment}</li>`).join('')}</ul>
+        </div> 
       </div>
     `;
   }
@@ -61,6 +59,8 @@ export class DocumentCard extends HTMLElement {
     const style = document.createElement('style');
     style.textContent = `
       .document-card {
+        display: flex;
+        justify-content: space-between;
         border: 1px solid #ccc;
         border-radius: 8px;
         padding: 16px;
@@ -74,7 +74,6 @@ export class DocumentCard extends HTMLElement {
         transform: translateY(-2px);
       }
       .card-header {
-        border-bottom: 1px solid #eee;
         margin-bottom: 12px;
         padding-bottom: 8px;
       }
@@ -88,7 +87,6 @@ export class DocumentCard extends HTMLElement {
         font-size: 0.9em;
       }
       .contributors-list, .attachments-list {
-        list-style-type: disc;
         padding-left: 20px;
       }
     `;
